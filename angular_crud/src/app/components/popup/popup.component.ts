@@ -29,10 +29,24 @@ export class PopupComponent implements OnInit {
 
   informationForm = this.builder.group({
     id: this.builder.control({ value: '', disabled: true }),
-    name: this.builder.control('', Validators.required),
-    phone: this.builder.control('', Validators.required),
-    email: this.builder.control('', Validators.required),
+   // name: this.builder.control('', Validators.required),
+   // phone: this.builder.control('', Validators.pattern("^((\\+88-?)|0)?[0-9]{11}$")),
+   // email: this.builder.control('', Validators.email),
+    phone: ['', [ Validators.required,
+      Validators.pattern("^((\\+88-?)|0)?[0-9]{11}$"),
+      Validators.minLength(11), Validators.maxLength(11)]],
+      email: ['', [ Validators.required,
+        Validators.email,
+        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
+        ]],
+        name: ['', [ Validators.required,
+          Validators.minLength(4)
+          ]]
+
   });
+  get m(){
+    return this.informationForm.controls;
+  }
 
   saveInformation() {
     if (this.informationForm.valid) {
@@ -54,5 +68,6 @@ export class PopupComponent implements OnInit {
   closePopUp() {
     this.dialog.closeAll();
   }
+
 
 }

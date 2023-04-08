@@ -10,19 +10,48 @@
                     <mat-label>Name</mat-label>
                     <input matInput placeholder="Name" formControlName="name">
                 </mat-form-field>
+                <div *ngIf="m.name.touched && m.name.invalid">
+                    <div *ngIf="m.name.errors?.['required']">
+                        <p class="text-[10px] text-red-700">*Please enter your Name</p>
+                    </div>
+                    <div *ngIf="m.name.errors?.['pattern']">
+                        <p class="text-[10px] text-red-700">*Please enter 4 characters</p>
+                    </div>
+                </div>
+
+
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>phone</mat-label>
                     <input matInput placeholder="phone" formControlName="phone">
                 </mat-form-field>
 
+                <div *ngIf="m.phone.touched && m.phone.invalid">
+                    <div *ngIf="m.phone.errors?.['required']">
+                        <p class="text-[10px] text-red-700">*Please enter phone number</p>
+                    </div>
+                    <div *ngIf="m.phone.errors?.['pattern']">
+                        <p class="text-[10px] text-red-700">*phone number is not 11 digit</p>
+                    </div>
+                </div>
+
+
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>email</mat-label>
                     <input matInput placeholder="email" formControlName="email">
+
                 </mat-form-field>
+                <div *ngIf="m.email.touched && m.email.invalid">
+                    <div *ngIf="m.email.errors?.['required']">
+                        <p class="text-[10px] text-red-700">*Please enter email address</p>
+                    </div>
+                    <div *ngIf="m.email.errors?.['pattern']">
+                        <p class="text-[10px] text-red-700">*Please enter valid email address</p>
+                    </div>
+                </div>
             </mat-card-content>
             <mat-card-footer class="p-2">
                 <div class="example-button-row" style="margin: 2px">
-                    <button mat-raised-button color="primary">Save</button> | <a (click)="closePopUp()" mat-raised-button color="warn">Close</a>
+                    <button mat-raised-button color="primary" [disabled]="!informationForm.valid">Save</button> | <a (click)="closePopUp()" mat-raised-button color="warn">Close</a>
                 </div>
             </mat-card-footer>
         </mat-card>
