@@ -1,5 +1,5 @@
 export interface informationModel{
-  _id:number,
+  id:number,
   name:string,
   phone:string,
   email:string,
