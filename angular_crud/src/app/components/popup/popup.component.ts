@@ -2,6 +2,7 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/shared/api.service';
+import * as alertify from 'alertifyjs'
 
 
 @Component({
@@ -16,43 +17,42 @@ export class PopupComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data.id != '' && this.data.id != null) {
-      this.api.getInformationById(this.data.id).subscribe(response => {
+      this.api.getInformationbyId(this.data.id).subscribe(response => {
         this.editdata = response;
-        this.companyform.setValue({
-          id: this.editdata.id, name: this.editdata.name, phone:this.editdata.phone, email:this.editdata.email
+        this.informationForm.setValue({
+          id: this.editdata.id, name: this.editdata.name, phone: this.editdata.phone,
+          email: this.editdata.email
         });
       });
     }
   }
 
-  companyform = this.builder.group({
+  informationForm = this.builder.group({
     id: this.builder.control({ value: '', disabled: true }),
     name: this.builder.control('', Validators.required),
     phone: this.builder.control('', Validators.required),
     email: this.builder.control('', Validators.required),
-
   });
 
-  SaveCompany() {
-    if (this.companyform.valid) {
-      const Editid = this.companyform.getRawValue().id;
+  saveInformation() {
+    if (this.informationForm.valid) {
+      const Editid = this.informationForm.getRawValue().id;
       if (Editid != '' && Editid != null) {
-        this.api.UpdateInformation(Editid, this.companyform.getRawValue()).subscribe(response => {
-          this.closepopup();
-         alert("Updated successfully.")
+        this.api.updateInformation(Editid, this.informationForm.getRawValue()).subscribe(response => {
+          this.closePopUp();
+          alertify.success("Updated successfully.")
         });
       } else {
-        this.api.createInformation(this.companyform.value).subscribe(response => {
-          this.closepopup();
-          alert("saved successfully.")
+        this.api.createInformation(this.informationForm.value).subscribe(response => {
+          this.closePopUp();
+          alertify.success("saved successfully.")
         });
       }
     }
   }
 
-  closepopup() {
+  closePopUp() {
     this.dialog.closeAll();
   }
-
 
 }

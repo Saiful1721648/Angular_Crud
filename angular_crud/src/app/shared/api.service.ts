@@ -9,21 +9,25 @@ import { Observable } from 'rxjs';
 export class ApiService {
 
   constructor(private http: HttpClient) { }
-  apiUrl ='http://localhost:3000/information';
+  apiurl ='http://localhost:3000/information';
 
   getAllInformation(): Observable<informationModel[]> {
-    return this.http.get<informationModel[]>(this.apiUrl);
+    return this.http.get<informationModel[]>(this.apiurl);
   }
-  getInformationById(id: any): Observable<informationModel> {
-    return this.http.get<informationModel>(this.apiUrl+ '/' +id);
+
+  getInformationbyId(id: any): Observable<informationModel> {
+    return this.http.get<informationModel>(this.apiurl + '/' + id);
   }
-  createInformation(informationData: any) {
-    return this.http.post(this.apiUrl, informationData);
+
+  removeInformationbyId(id: any) {
+    return this.http.delete(this.apiurl + '/' + id);
   }
-  RemoveInformationbycode(id: any) {
-    return this.http.delete(this.apiUrl + '/' + id);
+
+  createInformation(companydata: any) {
+    return this.http.post(this.apiurl, companydata);
   }
-  UpdateInformation(id: any, tabledata: any) {
-    return this.http.put(this.apiUrl + '/' + id, tabledata);
+
+  updateInformation(id: any, companydata: any) {
+    return this.http.put(this.apiurl + '/' + id, companydata);
   }
 }

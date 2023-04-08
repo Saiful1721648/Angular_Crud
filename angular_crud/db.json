@@ -1,34 +1,16 @@
 {
   "information": [
     {
-      "id": 1,
-      "name": "test",
+      "name": "saif",
       "phone": "01521212121",
-      "email": "abcd@gmail.com"
+      "email": "saif@gmail.com",
+      "id": 1
     },
     {
-      "name": "saif",
-      "phone": "01624365646",
+      "name": "abcd",
+      "phone": "01521212121",
       "email": "abcd@gmail.com",
       "id": 2
-    },
-    {
-      "name": "test",
-      "phone": "015",
-      "email": "a@gmail.com",
-      "id": 3
-    },
-    {
-      "name": "saif1",
-      "phone": "01624365646",
-      "email": "saif@gmail.com",
-      "id": 4
-    },
-    {
-      "name": "saif12",
-      "phone": "12",
-      "email": "s@gmail.com",
-      "id": 5
     }
   ]
 }
