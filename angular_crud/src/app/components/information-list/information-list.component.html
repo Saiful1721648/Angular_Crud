@@ -1,5 +1,8 @@
 <h1>Profile details</h1>
 <div class="mat-elevation-z8">
+    <div>
+        <a mat-raised-button color="primary" (click)="Openpopup('')" style="margin: 2%">Add Information</a>
+    </div>
     <table mat-table [dataSource]="tabledata" class="mat-elevation-z8">
 
         <ng-container matColumnDef="_id">
@@ -32,6 +35,5 @@
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayColums"></tr>
         <tr mat-row *matRowDef="let row; columns: displayColums;"></tr>
-
     </table>
 </div>
